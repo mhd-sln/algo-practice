@@ -6,18 +6,17 @@ import (
 
 func getReverse(sentence string) string {
 	reversed := ""
-
+	wordStartIndex := len(sentence) -1
 	wordEndIndex := len(sentence)
-	sentenceIndex := len(sentence) - 1
-	for ; sentenceIndex > 0; sentenceIndex-- {
-		if sentence[sentenceIndex] == ' ' {
-			word := sentence[sentenceIndex+1 : wordEndIndex]
-			reversed += word
+
+	for ; wordStartIndex > 0; wordStartIndex-- {
+		if(sentence[wordStartIndex] == ' ') {
+			reversed += sentence[wordStartIndex+1:wordEndIndex]
 			reversed += " "
-			wordEndIndex = sentenceIndex
+			wordEndIndex = wordStartIndex
 		}
 	}
-	reversed += sentence[sentenceIndex: wordEndIndex ]
+	reversed += sentence[0: wordEndIndex]
 	return reversed
 }
 func main() {

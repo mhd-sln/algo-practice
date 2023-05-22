@@ -1,26 +1,30 @@
-package main;
+package main
+
 import "fmt"
 
-func cloneEvenNumbers(numbers []int) []int {
-	seenIndex := len(numbers) -1 ;
-	placingIndex := seenIndex;
-
-	for i:= seenIndex; i >= 0; i-- {
-		if (numbers[i] != -1) {
-			numbers[placingIndex] = numbers[i]
-			placingIndex -= 1
-			if numbers[i] % 2 == 0 {
-				numbers[placingIndex] = numbers[i]
-				placingIndex--;
-			}
+func getEvenNumberTwice(numbers []int) []int {
+	lastNumberIndex := getLastNumberIndex(numbers)
+	endIndex := len(numbers) - 1
+	for ; lastNumberIndex >= 0; lastNumberIndex-- {
+		numbers[endIndex] = numbers[lastNumberIndex]
+		endIndex--
+		if numbers[lastNumberIndex]%2 == 0 {
+			numbers[endIndex] = numbers[lastNumberIndex]
+			endIndex--
 		}
 	}
-	return numbers;
+	return numbers
+}
+
+func getLastNumberIndex(numbers []int) int {
+	i := len(numbers) - 1
+	for ; numbers[i] == -1; i-- {
+	}
+	return i
 }
 
 func main() {
-	input := []int{1,2,3,4,5,9,-1,-1}
-	result := cloneEvenNumbers(input)
-	fmt.Println(result)
-
+	numbers := []int{1, 2, 3, 4, 6, 8, -1, -1, -1, -1}
+	evenNumberTwice := getEvenNumberTwice(numbers)
+	fmt.Println(evenNumberTwice)
 }
